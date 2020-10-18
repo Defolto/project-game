@@ -18,10 +18,12 @@ class Login extends React.Component {
 
     send(id, login) {
         document.querySelector(`#${id}`).addEventListener("submit",function(e){
+            let email = document.querySelector("#email").value;
+            let password = document.querySelector("#password").value
             e.preventDefault();
             let info_body = {
-                user_email: document.querySelector("#email").value,
-                user_password: document.querySelector("#password").value
+                user_email: email,
+                user_password: password
             }
             fetch(`http://127.0.0.1:5000/${id}`, {
                 method: "POST",
@@ -31,7 +33,14 @@ class Login extends React.Component {
                 .then(response => response.text())
                 .then(result => {
                     if (JSON.parse(result)) {
-                        login();
+                        let newAkk = JSON.parse(result);
+                        login(email, 
+                            password,
+                            newAkk.radius,
+                            newAkk.evol,
+                            newAkk.growPx,
+                            newAkk.growEvol,
+                            newAkk.color);
                     } else {
                         return false
                     }
@@ -41,7 +50,19 @@ class Login extends React.Component {
         })
     }
 
+    dontSend(id){
+        document.querySelector(`#${id}`).removeEventListener("submit")
+    }
+
     componentDidMount(){
+        if (this.state.come) {
+            this.send("login", this.props.login)
+        } else {
+            this.send("register");
+        }
+    }
+
+    componentDidUpdate(){
         if (this.state.come) {
             this.send("login", this.props.login)
         } else {

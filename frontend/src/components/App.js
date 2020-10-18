@@ -9,6 +9,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      email: false,
+      password: false,
       login: false,
       radius: 1,
       evol: 0,
@@ -18,11 +20,19 @@ class App extends React.Component {
     };
   }
 
-  changeLogin = () => {
+  changeLogin = (email, password, radius, evol, growPx, growEvol, color) => {
     let newLogin = !this.state.login
     this.setState({
-      login: newLogin
+      login: newLogin,
+      email: email,
+      password: password,
+      radius: radius,
+      evol: evol,
+      growPx: growPx,
+      growEvol: growEvol,
+      color: color
     });
+    console.log(this.state);
   }
 
   componentWillMount(){
@@ -32,6 +42,25 @@ class App extends React.Component {
   componentDidMount(){
     let elem = document.querySelector(".preloader");
     elem.parentNode.removeChild(elem);
+  }
+
+  componentDidUpdate(){
+    if (this.state.login) {
+      let info_body = {
+        user_email: this.state.email,
+      }
+      fetch(`http://127.0.0.1:5000/getInfo`, {
+          method: "POST",
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(info_body),
+      })
+      .then(response => response.text())
+      .then(result => {
+          console.log(JSON.parse(result));
+      })
+      .catch(error => console.log('error', error));
+      return false
+    }
   }
 
   render() {

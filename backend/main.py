@@ -22,12 +22,6 @@ def update_document(collection, query_elements, new_values):
 def delete_document(collection, query):
     collection.delete_one(query)
 
-# @app.route("/", methods=['GET'])
-# @app.route("/index", methods=['GET'])
-# def main_page():
-#     list1 = list(records.find({}, {"_id": 0}))
-#     return jsonify(list1)
-
 # Вход в аккаунт
 @app.route("/login", methods=['POST'])
 def login():
@@ -45,19 +39,32 @@ def login():
 def register():
     newData = request.json
     print(newData)
-    akk = records.find_one({"email": newData.get("user_email"), "password": newData.get("user_password")}, {"_id": 0})
+
+    check = records.find_one({"email": newData.get("user_email")}, {"_id": 0})
+    if check:
+        return False
+
+    new_akk ={
+        "email": newData.get("user_email"),
+        "password": newData.get("user_password"),
+        "radius": 1,
+        "evol": 0,
+        "growPx": 0,
+        "growEvol": 0,
+        "color": "#000"
+    }
+    akk = insert_document(records, new_akk)
+    print(akk)
+
     if akk:
        pass
     else:
         akk = False
     return jsonify(akk)
 
-@app.route("/add", methods=['POST'])
-def add():
+@app.route("/getInfo", methods=['POST'])
+def getInfo():
     newData = request.json
-    new_show = {
-        "name": newData.get("user_name"),
-        "password": newData.get("user_password")
-    }
-    print(insert_document(records, new_show))
-    return jsonify("акк создан")
+    print(newData)
+    akk = records.find_one({"email": newData.get("user_email")}, {"_id": 0})
+    return jsonify(akk)
