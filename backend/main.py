@@ -10,17 +10,23 @@ app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 CORS(app)
 
+# Создание нового документа
 def insert_document(collection, data):
-    """ Function to insert a document into a collection and
-    return the document's id.
-    """
     return collection.insert_one(data).inserted_id
 
-@app.route("/", methods=['GET'])
-@app.route("/index", methods=['GET'])
-def main_page():
-    list1 = list(records.find({}, {"_id": 0}))
-    return jsonify(list1)
+# Обновление документа
+def update_document(collection, query_elements, new_values):
+    collection.update_one(query_elements, {'$set': new_values})
+
+# Удаление документа
+def delete_document(collection, query):
+    collection.delete_one(query)
+
+# @app.route("/", methods=['GET'])
+# @app.route("/index", methods=['GET'])
+# def main_page():
+#     list1 = list(records.find({}, {"_id": 0}))
+#     return jsonify(list1)
 
 @app.route("/login", methods=['POST'])
 def login():
