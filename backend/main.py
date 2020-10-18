@@ -28,15 +28,28 @@ def delete_document(collection, query):
 #     list1 = list(records.find({}, {"_id": 0}))
 #     return jsonify(list1)
 
+# Вход в аккаунт
 @app.route("/login", methods=['POST'])
 def login():
     newData = request.json
     print(newData)
-    akk = records.find_one({"name": newData.get("user_name"), "password": newData.get("user_password")}, {"_id": 0, "info": 1})
+    akk = records.find_one({"email": newData.get("user_email"), "password": newData.get("user_password")}, {"_id": 0})
     if akk:
        pass
     else:
-        akk = "Пользователь не найден"
+        akk = False
+    return jsonify(akk)
+
+# Регистрация аккаунта
+@app.route("/register", methods=['POST'])
+def register():
+    newData = request.json
+    print(newData)
+    akk = records.find_one({"email": newData.get("user_email"), "password": newData.get("user_password")}, {"_id": 0})
+    if akk:
+       pass
+    else:
+        akk = False
     return jsonify(akk)
 
 @app.route("/add", methods=['POST'])
