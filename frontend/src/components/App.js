@@ -1,24 +1,41 @@
 import React from 'react';
-import '../css/test.css'
+import Info from "./Info";
+import Upgrade from "./Upgrade";
+import "../css/app.css"
+import "../css/general.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      radius: 1,
+      evol: 0,
+      growPx: 0.01,
+      growEvol: 1,
+      color: "#ffffff"
+    };
+  }
+
+  render() {
+    return (
+      <div className="app">
+        <Info 
+          radius = {this.state.radius}
+          evol = {this.state.evol}
+          growPx = {this.state.growPx}
+          growEvol = {this.state.growEvol}
+        />
+        <div className="app-circle">
+          <div className="circle">
+            <div className="circle-shadow"></div>
+          </div>
+        </div>
+        <Upgrade 
+          color={this.state.color}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -1,0 +1,93 @@
+.app{
+    display: flex;
+    flex-direction: row;
+
+    &-info,
+    &-upgrade{
+        padding: 10px 40px;
+        width: 30%;
+
+        h2{
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 40px;
+            color: rgb(7, 44, 211);
+        }
+    }
+
+    &-info{
+        p{
+            font-size: 20px;
+            margin-bottom: 15px;
+
+            span{
+                font-weight: 700;
+            }
+        }
+    }
+
+    &-upgrade{
+        p{
+            display: flex;
+            margin: 10px 0;
+            border-radius: 5px;
+            padding: 15px 20px;
+            background-color: rgb(72, 255, 255);
+            cursor: pointer;
+            transition: .3s;
+
+            span{
+                display: inline-block;
+                margin-left: auto;
+            }
+
+            &:hover{
+                transform: scale(1.02, 1);
+            }
+        }
+
+        div{
+            input{
+                margin-left: 10px;
+            }
+        }
+    }
+
+    &-circle{
+        width: 40%;
+        height: 100vh;
+        display: flex;
+
+        .circle{
+            position: relative;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            background-color: rgb(95, 2, 170);
+            cursor: pointer;
+
+            &-shadow{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 90%;
+                height: 90%;
+                border-radius: 50%;
+                background-color: transparent;
+                border: 1px solid rgb(95, 2, 170);
+                transition: .2s;
+            }
+
+            &:hover{
+                .circle-shadow{
+                    filter: blur(1px);
+                    top: -7%;
+                    left: -8%;
+                    width: 110%;
+                    height: 110%;
+                }
+            }
+        }
+    }
+}
