@@ -28,7 +28,8 @@
     }
 
     &-upgrade{
-        p{
+        &__block{
+            position: relative;
             display: flex;
             margin: 10px 0;
             border-radius: 5px;
@@ -44,6 +45,14 @@
 
             &:hover{
                 transform: scale(1.02, 1);
+            }
+
+            .wrapper{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
             }
         }
 
@@ -62,32 +71,15 @@
         .circle{
             position: relative;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
             margin: auto;
-            background-color: rgb(95, 2, 170);
             cursor: pointer;
-
-            &-shadow{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 90%;
-                height: 90%;
-                border-radius: 50%;
-                background-color: transparent;
-                border: 1px solid rgb(95, 2, 170);
-                transition: .2s;
-            }
+            border: 1px solid transparent;
+            transform: rotateZ(0deg);
+            transition: 1s;
 
             &:hover{
-                .circle-shadow{
-                    filter: blur(1px);
-                    top: -7%;
-                    left: -8%;
-                    width: 110%;
-                    height: 110%;
-                }
+                border-radius: 0%;
+                transform: rotateZ(180deg);
             }
         }
     }

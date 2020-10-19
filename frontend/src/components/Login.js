@@ -5,7 +5,8 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            come: true
+            come: true,
+            div: false
         };
     }
 
@@ -18,9 +19,9 @@ class Login extends React.Component {
 
     send(id, login) {
         document.querySelector(`#${id}`).addEventListener("submit",function(e){
+            e.preventDefault();
             let email = document.querySelector("#email").value;
             let password = document.querySelector("#password").value
-            e.preventDefault();
             let info_body = {
                 user_email: email,
                 user_password: password
@@ -40,6 +41,7 @@ class Login extends React.Component {
                             newAkk.evol,
                             newAkk.growPx,
                             newAkk.growEvol,
+                            newAkk.evolClick,
                             newAkk.color);
                     } else {
                         return false
@@ -47,26 +49,26 @@ class Login extends React.Component {
                 })
                 .catch(error => console.log('error', error));
                 return false
-        })
+        });
     }
 
-    dontSend(id){
-        document.querySelector(`#${id}`).removeEventListener("submit")
-    }
+    // dontSend(id){
+    //     this.state.div.removeEventListener("submit");
+    // }
 
     componentDidMount(){
         if (this.state.come) {
             this.send("login", this.props.login)
         } else {
-            this.send("register");
+            this.send("register", this.props.login);
         }
     }
 
     componentDidUpdate(){
         if (this.state.come) {
-            this.send("login", this.props.login)
+            this.send("login", this.props.login);
         } else {
-            this.send("register");
+            this.send("register", this.props.login);
         }
     }
 
@@ -97,7 +99,7 @@ class Login extends React.Component {
                     <form className="login-form" id="register">
                         <input type="text" placeholder="Email" id="email"/>
                         <input type="password" placeholder="Пароль" id="password"/>
-                        <input type="submit" value="Войти"/>
+                        <input type="submit" value="Зарегистрироваться"/>
                     </form>
                 </div>
             );
