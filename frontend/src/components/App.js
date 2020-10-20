@@ -67,7 +67,7 @@ class App extends React.Component {
           user_evol: newCountEvol
         }
 
-        fetch(`http://127.0.0.1:5000/upgrade`, {
+        fetch(`https://pre1243.herokuapp.com/upgrade`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(info_body),
@@ -92,7 +92,7 @@ class App extends React.Component {
           user_evol: newCountEvol
         }
 
-        fetch(`http://127.0.0.1:5000/upgrade`, {
+        fetch(`https://pre1243.herokuapp.com/upgrade`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(info_body),
@@ -117,7 +117,7 @@ class App extends React.Component {
           user_evol: newCountEvol
         }
 
-        fetch(`http://127.0.0.1:5000/upgrade`, {
+        fetch(`https://pre1243.herokuapp.com/upgrade`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(info_body),
@@ -151,7 +151,7 @@ class App extends React.Component {
   //     let info_body = {
   //       user_email: this.state.email,
   //     }
-  //     fetch(`http://127.0.0.1:5000/getInfo`, {
+  //     fetch(`https://pre1243.herokuapp.com/getInfo`, {
   //         method: "POST",
   //         headers: {'Content-Type': 'application/json'},
   //         body: JSON.stringify(info_body),
@@ -173,7 +173,7 @@ class App extends React.Component {
       user_evol: addOne
     }
 
-    fetch(`http://127.0.0.1:5000/click`, {
+    fetch(`https://pre1243.herokuapp.com/click`, {
           method: "POST",
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(info_body),
@@ -192,7 +192,7 @@ class App extends React.Component {
       user_color: color
     }
 
-    fetch(`http://127.0.0.1:5000/changeColor`, {
+    fetch(`https://pre1243.herokuapp.com/changeColor`, {
           method: "POST",
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(info_body),

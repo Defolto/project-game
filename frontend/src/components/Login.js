@@ -26,7 +26,7 @@ class Login extends React.Component {
                 user_email: email,
                 user_password: password
             }
-            fetch(`http://127.0.0.1:5000/${id}`, {
+            fetch(`https://pre1243.herokuapp.com/${id}`, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(info_body),
@@ -79,7 +79,7 @@ class Login extends React.Component {
                     <div className="login-row">
                         <h2 className="active">Войти</h2>
                         <h2>/</h2>
-                        <h2 onClick={() => this.change()}>Регистрация</h2>
+                        <h2 style={{color: "red", textDecoration: "line-through"}}>Регистрация</h2>
                     </div>
                     <form className="login-form" id="login">
                         <input type="text" placeholder="Email" id="email"/>
